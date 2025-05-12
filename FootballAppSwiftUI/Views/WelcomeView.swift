@@ -8,12 +8,16 @@
 import SwiftUI
 
 struct WelcomeView: View {
+    
+    @AppStorage(AppStorageKeysHelper.firstLaunch) private var firstLaunch = false
+    
     var body: some View {
         ZStack {
             Image("welcomeImage")
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
+            
             VStack {
                 Text("Welcome to Football App")
                     .font(.largeTitle)
@@ -24,8 +28,9 @@ struct WelcomeView: View {
                 
                 Spacer()
                 
-                Button(action: {
-                }) {
+                Button {
+                    firstLaunch = true
+                } label: {
                     Text("Start")
                         .font(.title)
                         .fontWeight(.heavy)
@@ -35,6 +40,7 @@ struct WelcomeView: View {
                         .foregroundColor(.white)
                         .cornerRadius(8)
                         .padding(.horizontal, 24)
+                    
                 }
                 .padding(.bottom, 40)
             }

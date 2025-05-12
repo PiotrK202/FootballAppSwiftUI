@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+enum AppStorageKeysHelper {
+    static let firstLaunch = "firstLaunch"
+}

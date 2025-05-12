@@ -9,13 +9,15 @@ import SwiftUI
 
 @main
 struct FootballAppSwiftUIApp: App {
-    private let userDefaults = UserDefaultsHelper()
+
+    @AppStorage(AppStorageKeysHelper.firstLaunch) private var firstLaunch = false
+    
     var body: some Scene {
         WindowGroup {
-            if userDefaults.isFirstLaunch {
-                WelcomeView()
-            } else {
+            if firstLaunch {
                 LeaguesListView()
+            } else {
+                WelcomeView()
             }
         }
     }
