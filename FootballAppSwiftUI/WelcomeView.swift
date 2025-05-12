@@ -27,6 +27,8 @@ struct WelcomeView: View {
                 Button(action: {
                 }) {
                     Text("Start")
+                        .font(.title)
+                        .fontWeight(.heavy)
                         .frame(maxWidth: .infinity)
                         .frame(height: 40)
                         .background(Color.blue)
