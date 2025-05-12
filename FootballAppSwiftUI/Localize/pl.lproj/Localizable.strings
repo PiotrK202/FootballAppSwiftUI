@@ -8,3 +8,6 @@
 
 "WelcomeView_Text" = "Witaj w Football App";
 "WelcomeView_buttonLabel" = "Zaczynajmy";
+"LeaguesView_AlertTitle" = "Cos poszlo nie ta";
+"LeaguesView_AlertButtonTitle" = "ponow";
+"LeaguesView_AlertMessage" = "sproboj pobrac jeszcze raz";
