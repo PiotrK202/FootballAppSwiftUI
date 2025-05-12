@@ -10,6 +10,8 @@ import SwiftUI
 struct WelcomeView: View {
     
     @AppStorage(AppStorageKeysHelper.firstLaunch) private var firstLaunch = false
+    private let welcomeText = NSLocalizedString("WelcomeView_Text", comment: "welcome text")
+    private let buttonLabel = NSLocalizedString("WelcomeView_buttonLabel", comment: "button label")
     
     var body: some View {
         ZStack {
@@ -19,7 +21,7 @@ struct WelcomeView: View {
                 .ignoresSafeArea()
             
             VStack {
-                Text("Welcome to Football App")
+                Text(welcomeText)
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundStyle(.white)
@@ -31,7 +33,7 @@ struct WelcomeView: View {
                 Button {
                     firstLaunch = true
                 } label: {
-                    Text("Start")
+                    Text(buttonLabel)
                         .font(.title)
                         .fontWeight(.heavy)
                         .frame(maxWidth: .infinity)

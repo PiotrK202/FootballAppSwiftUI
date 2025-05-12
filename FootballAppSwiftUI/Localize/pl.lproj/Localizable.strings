@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  FootballAppSwiftUI
+
+  Created by piotr koscielny on 12/5/25.
+  
+*/
+
+"WelcomeView_Text" = "Witaj w Football App";
+"WelcomeView_buttonLabel" = "Zaczynajmy";
