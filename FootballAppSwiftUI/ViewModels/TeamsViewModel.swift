@@ -36,5 +36,4 @@ final class TeamsViewModel {
             throw error
         }
     }
-    
 }

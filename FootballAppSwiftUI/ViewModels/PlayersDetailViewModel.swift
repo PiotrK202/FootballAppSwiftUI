@@ -12,7 +12,7 @@ final class PlayersDetailViewModel {
     private let repository: RepositoryProtocol
     private let unknownValue = NSLocalizedString("Unknown", comment: "unknown value")
     private var model: PlayerDetailModel?
-        
+    
     init(repository: RepositoryProtocol) {
         self.repository = repository
     }
@@ -38,9 +38,9 @@ final class PlayersDetailViewModel {
     }
     
     var shirtNumber: String {
-          guard let number = model?.shirtNumber else { return unknownValue }
-          return "\(number)"
-      }
+        guard let number = model?.shirtNumber else { return unknownValue }
+        return "\(number)"
+    }
     
     func fetchPlayers(playerId: Int) async throws {
         do {

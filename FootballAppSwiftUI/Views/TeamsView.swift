@@ -14,7 +14,7 @@ struct TeamsView: View {
     let viewModel: TeamsViewModel
     
     private let columns = [ GridItem(.flexible()), GridItem(.flexible())]
-    private let unknown = "unknown"
+    private let unknown = NSLocalizedString("Unknown", comment: "unknown")
     var body: some View {
         NavigationStack {
             ScrollView {
