@@ -11,12 +11,11 @@ import SwiftUI
 struct FootballAppSwiftUIApp: App {
 
     @AppStorage(AppStorageKeysHelper.firstLaunch) private var firstLaunch = false
-    let session = URLSession(configuration: .default)
     
     var body: some Scene {
         WindowGroup {
             if firstLaunch {
-                LeaguesListView(viewModel: LeaguesViewModel(repository: Repository(dataService: DataService(session: session))))
+                LeaguesListView(viewModel: LeaguesViewModel(repository: Repository(dataService: DataService(session: URLSessionHelper.session))))
             } else {
                 WelcomeView()
             }

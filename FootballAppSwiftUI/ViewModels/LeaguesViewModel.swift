@@ -10,11 +10,7 @@ import Foundation
 @Observable
 final class LeaguesViewModel {
     private let repository: RepositoryProtocol
-    var models = [LeaguesModel]()
-    
-    var emblemUrl: URL? {
-        models.first?.emblem
-    }
+    private(set) var models = [LeaguesModel]()
     
     var alertMessage: String {
         NSLocalizedString("LeaguesView_AlertMessage", comment: "alert message")

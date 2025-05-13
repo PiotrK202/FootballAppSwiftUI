@@ -15,7 +15,7 @@ struct LeaguesResponse: Codable {
 struct LeaguesModel: Codable, Identifiable {
     let id: Int
     let name: String
-    let code: String?
+    let code: String
     let type: String?
     let area: AreaModel
     let emblem: URL?
