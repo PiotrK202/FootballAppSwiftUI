@@ -10,7 +10,22 @@ import Foundation
 @Observable
 final class LeaguesViewModel {
     private let repository: RepositoryProtocol
-    private(set) var models = [LeaguesModel]()
+    private var models = [LeaguesModel]()
+    
+    var groupedLeagues: [String: [LeaguesModel]] {
+        let gruped = Dictionary(grouping: models) { league in
+            String(league.name.prefix(1)).uppercased()
+        }
+        return gruped.mapValues { $0.sorted { $0.name < $1.name }}
+    }
+    
+    var sortedSectionTitles: [String] {
+        groupedLeagues.keys.sorted()
+    }
+    
+    var viewTitle: String {
+        NSLocalizedString("LeaguesView_Title", comment: "view title")
+    }
     
     var alertMessage: String {
         NSLocalizedString("LeaguesView_AlertMessage", comment: "alert message")
@@ -23,7 +38,7 @@ final class LeaguesViewModel {
     var alertButtonTitle: String {
         NSLocalizedString("LeaguesView_AlertButtonTitle" , comment: "primary button")
     }
-
+    
     init(repository: RepositoryProtocol) {
         self.repository = repository
     }

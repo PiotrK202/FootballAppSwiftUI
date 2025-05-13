@@ -15,43 +15,45 @@ struct LeaguesListView: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach(viewModel.models) { model in
-                    NavigationLink(destination: TeamsView(leaguesCode: model.code, viewModel: TeamsViewModel(repository: Repository(dataService: DataService(session: URLSessionHelper.session))))) {
-                        HStack(spacing: 16) {
-                        
-                            AsyncImage(url: model.emblem) { phase in
-                                switch phase {
-                                case .empty:
-                                    ProgressView()
-                                        .frame(width: 50, height: 50)
-                                case .success(let image):
-                                    image
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 50, height: 50)
-                                        .presentationCornerRadius(6)
-                                case .failure(let error):
-                                    Text("Error: \(error)")
-                                    // MARK: if not for api that cant download one image i would do something like this
-                                    /*
-                                     Color.clear
-                                     .frame(width: 50, height: 50)
-                                     .onAppear {
-                                     showAlert = true
-                                     }*/
+                ForEach(viewModel.sortedSectionTitles, id: \.self) { letter in
+                    Section(header: Text(letter)) {
+                        ForEach(viewModel.groupedLeagues[letter] ?? []) { model in
+                            NavigationLink(destination: TeamsView(leaguesCode: model.code, viewModel: TeamsViewModel(repository: Repository(dataService: DataService(session: URLSessionHelper.session))))) {
+                                HStack(spacing: 16) {
                                     
-                                @unknown default:
-                                    EmptyView()
+                                    AsyncImage(url: model.emblem) { phase in
+                                        switch phase {
+                                        case .empty:
+                                            ProgressView()
+                                                .frame(width: 50, height: 50)
+                                        case .success(let image):
+                                            image
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 50, height: 50)
+                                                .presentationCornerRadius(6)
+                                        case .failure:
+                                            Image(systemName: "photo")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 50, height: 50)
+                                                .foregroundColor(.gray)
+                                        @unknown default:
+                                            EmptyView()
+                                        }
+                                    }
+                                    
+                                    Text(model.name)
+                                        .font(.headline)
+                                        .foregroundStyle(.primary)
                                 }
                             }
-                            
-                            Text(model.name)
-                                .font(.headline)
-                                .foregroundStyle(.primary)
                         }
                     }
                 }
             }
+            .navigationTitle(viewModel.viewTitle)
+            .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 fetchLeagues()
             }
@@ -63,6 +65,7 @@ struct LeaguesListView: View {
 }
 
 extension LeaguesListView {
+    
     private func fetchLeagues() {
         Task {
             do {
