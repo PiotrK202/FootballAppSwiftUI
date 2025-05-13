@@ -11,3 +11,4 @@
 "LeaguesView_AlertTitle" = "Something went wrong";
 "LeaguesView_AlertButtonTitle" = "Retry";
 "LeaguesView_AlertMessage" = "Try download again";
+"TeamsView_AlertTitle" = "Downloading Teams went wrong";

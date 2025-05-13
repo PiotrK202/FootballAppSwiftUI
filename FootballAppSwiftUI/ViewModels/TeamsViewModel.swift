@@ -13,6 +13,14 @@ final class TeamsViewModel {
     private let repository: RepositoryProtocol
     private(set) var models = [TeamModel]()
     
+    var alertButtonTitle: String {
+        NSLocalizedString("LeaguesView_AlertButtonTitle" , comment: "primary button")
+    }
+    
+    var alertTitle: String {
+        NSLocalizedString("TeamsView_AlertTitle", comment: "title")
+    }
+    
     init(repository: RepositoryProtocol) {
         self.repository = repository
     }
