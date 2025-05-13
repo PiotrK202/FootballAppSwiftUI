@@ -9,6 +9,9 @@ import SwiftUI
 
 struct TeamsView: View {
     
+    let viewModel: TeamsViewModel
+    let leaguesCode: String
+    
     var body: some View {
         NavigationStack {
             Text("hello")
@@ -17,5 +20,6 @@ struct TeamsView: View {
 }
 
 #Preview {
-    TeamsView()
+    let code = ""
+    TeamsView(viewModel: TeamsViewModel(repository: Repository(dataService: DataService(session: URLSessionHelper.session))), leaguesCode: code)
 }
