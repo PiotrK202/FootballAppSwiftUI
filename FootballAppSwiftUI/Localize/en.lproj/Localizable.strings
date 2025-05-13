@@ -12,3 +12,9 @@
 "LeaguesView_AlertButtonTitle" = "Retry";
 "LeaguesView_AlertMessage" = "Try download again";
 "TeamsView_AlertTitle" = "Downloading Teams went wrong";
+"PlayersViewModel_AlertTitle" = "Downloadin Players went wrong";
+"Unknown" = "Unknown";
+"LeaguesView_Title" = "Leagues";
+"TeamsView_ViewTitle" = "Teams";
+"PlayersViewModel_ViewTitle" = "Players";
+"PlayersDetailView_Title" = "Details";

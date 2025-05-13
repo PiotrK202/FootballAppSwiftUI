@@ -11,3 +11,10 @@
 "LeaguesView_AlertTitle" = "Cos poszlo nie ta";
 "LeaguesView_AlertButtonTitle" = "ponow";
 "LeaguesView_AlertMessage" = "sproboj pobrac jeszcze raz";
+"TeamsView_AlertTitle" = "Pobieranie Druzyn sie nie powiodlo";
+"PlayersViewModel_AlertTitle" = "Pobieranie Zawodnikow sie nie powiodlo";
+"Unknown" = "Unknown";
+"LeaguesView_Title" = "Ligi";
+"TeamsView_ViewTitle" = "Druzyny";
+"PlayersViewModel_ViewTitle" = "Gracze";
+"PlayersDetailView_Title" = "Detale";
