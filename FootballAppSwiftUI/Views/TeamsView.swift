@@ -72,6 +72,8 @@ struct TeamsView: View {
                     .padding()
                 }
             }
+            .navigationTitle(viewModel.viewTitle)
+            .navigationBarTitleDisplayMode(.inline)
             .onAppear(perform: {
                 fetchTeams()
             })

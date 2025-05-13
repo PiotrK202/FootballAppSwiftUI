@@ -16,6 +16,10 @@ final class PlayersViewModel {
         self.repository = repository
     }
     
+    var viewTitle: String {
+        NSLocalizedString("PlayersViewModel_ViewTitle", comment: "title")
+    }
+    
     var alertTitle: String {
         NSLocalizedString("PlayersViewModel_AlertTitle", comment: "title")
     }
