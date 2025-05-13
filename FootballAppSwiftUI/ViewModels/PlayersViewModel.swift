@@ -10,10 +10,16 @@ import Foundation
 @Observable
 final class PlayersViewModel {
     private let repository: RepositoryProtocol
-    private(set) var models = [PlayerModel]()
+    private var models = [PlayerModel]()
     
     init(repository: RepositoryProtocol) {
         self.repository = repository
+    }
+    
+    var groupedPlayers: [String: [PlayerModel]] {
+        Dictionary(grouping: models) { player in
+            player.position ?? "Unknown"
+        }
     }
     
     var viewTitle: String {

@@ -13,28 +13,26 @@ struct PlayersView: View {
     let teamID: Int
     let viewModel: PlayersViewModel
     
-    private var groupedPlayers: [String: [PlayerModel]] {
-        Dictionary(grouping: viewModel.models) { player in
-            player.position ?? "Unknown"
-        }
-    }
-    
     var body: some View {
         NavigationStack {
             List {
-                ForEach(groupedPlayers.keys.sorted(),id: \.self) { position in
+                ForEach(viewModel.groupedPlayers.keys.sorted(),id: \.self) { position in
                     Section(header: Text(position)) {
-                        ForEach(groupedPlayers[position] ?? []) { player in
-                            VStack(alignment: .leading, spacing: 8) {
-                                HStack {
-                                    Text(player.name)
-                                        .font(.headline)
+                        ForEach(viewModel.groupedPlayers[position] ?? []) { player in
+                            NavigationLink(destination: PlayersDetailView(viewModel: PlayersDetailViewModel(repository: Repository(dataService: DataService(session: URLSessionHelper.session))), playerID: player.id)) {
+                                VStack(alignment: .leading, spacing: 8) {
+                                    HStack {
+                                        Text(player.name)
+                                            .font(.headline)
+                                    }
                                 }
                             }
                         }
                     }
                 }
             }
+            .navigationTitle(viewModel.viewTitle)
+            .navigationBarTitleDisplayMode(.inline)
             .alert(isPresented: $showAlert) {
                 Alert(title: Text(viewModel.alertTitle), primaryButton: .default(Text(viewModel.buttonAlertTitle), action: fetchPlayers), secondaryButton: .cancel())
             }
