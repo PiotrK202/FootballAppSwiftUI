@@ -8,11 +8,57 @@
 import SwiftUI
 
 struct PlayersView: View {
+    
+    @State private var showAlert = false
+    let teamID: Int
+    let viewModel: PlayersViewModel
+    
+    private var groupedPlayers: [String: [PlayerModel]] {
+        Dictionary(grouping: viewModel.models) { player in
+            player.position ?? "Unknown"
+        }
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            List {
+                ForEach(groupedPlayers.keys.sorted(),id: \.self) { position in
+                    Section(header: Text(position)) {
+                        ForEach(groupedPlayers[position] ?? []) { player in
+                            VStack(alignment: .leading, spacing: 8) {
+                                HStack {
+                                    Text(player.name)
+                                        .font(.headline)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .alert(isPresented: $showAlert) {
+                Alert(title: Text(viewModel.alertTitle), primaryButton: .default(Text(viewModel.buttonAlertTitle), action: fetchPlayers), secondaryButton: .cancel())
+            }
+            .onAppear {
+                fetchPlayers()
+            }
+        }
+    }
+}
+
+extension PlayersView {
+    
+    private func fetchPlayers() {
+        Task {
+            do {
+                try await viewModel.fetchPlayers(teamId: teamID)
+            } catch {
+                showAlert = true
+            }
+        }
     }
 }
 
 #Preview {
-    PlayersView()
+    let teamID = 1
+    PlayersView(teamID: teamID, viewModel: PlayersViewModel(repository: Repository(dataService: DataService(session: URLSessionHelper.session))))
 }

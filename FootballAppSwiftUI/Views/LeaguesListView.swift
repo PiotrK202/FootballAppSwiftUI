@@ -16,7 +16,7 @@ struct LeaguesListView: View {
         NavigationStack {
             List {
                 ForEach(viewModel.models) { model in
-                    NavigationLink(destination: TeamsView(viewModel: TeamsViewModel(repository: Repository(dataService: DataService(session: URLSessionHelper.session))), leaguesCode: model.code)) {
+                    NavigationLink(destination: TeamsView(leaguesCode: model.code, viewModel: TeamsViewModel(repository: Repository(dataService: DataService(session: URLSessionHelper.session))))) {
                         HStack(spacing: 16) {
                         
                             AsyncImage(url: model.emblem) { phase in
