@@ -9,9 +9,9 @@ import SwiftUI
 
 struct TeamsView: View {
     
+    @State var viewModel: TeamsViewModel
     @State private var showAlert = false
     let leaguesCode: String
-    let viewModel: TeamsViewModel
     
     private let columns = [ GridItem(.flexible()), GridItem(.flexible())]
     private let unknown = NSLocalizedString("Unknown", comment: "unknown")
@@ -19,13 +19,14 @@ struct TeamsView: View {
         NavigationStack {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 8) {
-                    ForEach(viewModel.models) { team in
+                    ForEach(viewModel.filtredTeams) { team in
                         NavigationLink {
                             PlayersView(teamID: team.id, viewModel: PlayersViewModel(repository: Repository(dataService: DataService(session: URLSessionHelper.session))))
                         } label: {
                             VStack(spacing: 8) {
                                 Text(team.shortName ?? unknown)
                                     .font(.headline)
+                                    .foregroundStyle(.primary)
                                     .multilineTextAlignment(.center)
                                 
                                 AsyncImage(url: team.crest) { phase in
@@ -52,7 +53,7 @@ struct TeamsView: View {
                                 
                                 Text(team.name)
                                     .font(.subheadline)
-                                    .foregroundStyle(.secondary)
+                                    .foregroundStyle(.primary)
                                     .multilineTextAlignment(.center)
                             }
                             .frame(maxWidth: .infinity)
@@ -65,13 +66,15 @@ struct TeamsView: View {
                                         RoundedRectangle(cornerRadius: 12)
                                             .fill(Color(.systemGray6))
                                     )
+                                    .shadow(color: Color.black.opacity(0.6), radius: 4, x: 0, y: 2)
                             )
-                            .shadow(color: Color.black.opacity(0.6), radius: 4, x: 0, y: 2)
                         }
+                        .buttonStyle(PlainButtonStyle())
                     }
                     .padding()
                 }
             }
+            .searchable(text: $viewModel.searchText)
             .navigationTitle(viewModel.viewTitle)
             .navigationBarTitleDisplayMode(.inline)
             .onAppear(perform: {
@@ -100,6 +103,6 @@ extension TeamsView {
 
 #Preview {
     let code = ""
-    TeamsView(leaguesCode: code, viewModel: TeamsViewModel(repository: Repository(dataService: DataService(session: URLSessionHelper.session))))
+    TeamsView(viewModel: TeamsViewModel(repository: Repository(dataService: DataService(session: URLSessionHelper.session))), leaguesCode: code)
 }
 

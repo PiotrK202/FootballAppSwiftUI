@@ -18,7 +18,7 @@ struct LeaguesListView: View {
                 ForEach(viewModel.sortedSectionTitles, id: \.self) { letter in
                     Section(header: Text(letter)) {
                         ForEach(viewModel.groupedLeagues[letter] ?? []) { model in
-                            NavigationLink(destination: TeamsView(leaguesCode: model.code, viewModel: TeamsViewModel(repository: Repository(dataService: DataService(session: URLSessionHelper.session))))) {
+                            NavigationLink(destination: TeamsView(viewModel: TeamsViewModel(repository: Repository(dataService: DataService(session: URLSessionHelper.session))), leaguesCode: model.code)) {
                                 HStack(spacing: 16) {
                                     
                                     AsyncImage(url: model.emblem) { phase in
