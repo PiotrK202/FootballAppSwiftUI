@@ -21,25 +21,45 @@ final class PlayersDetailViewModel {
         NSLocalizedString("PlayersDetailView_Title", comment: "title")
     }
     
+    var errorTitle: String {
+        NSLocalizedString("PlayerDetailView_ErrorTitle", comment: "error title")
+    }
+    
     var name: String {
         model?.name ?? unknownValue
     }
     
     var position: String {
-        model?.position ?? unknownValue
+       "\(positionText): \(model?.position ?? unknownValue)"
     }
     
     var dateOfBirth: String {
-        model?.dateOfBirth ?? unknownValue
+        "\(dateOfBirthTexst): \(model?.dateOfBirth ?? unknownValue)"
     }
     
     var nationality: String {
-        model?.nationality ?? unknownValue
+        "\(nationalityText): \(model?.nationality ?? unknownValue)"
     }
     
     var shirtNumber: String {
         guard let number = model?.shirtNumber else { return unknownValue }
-        return "\(number)"
+        return "\(shirtNumberText): \(number)"
+    }
+    
+    private var shirtNumberText: String {
+        NSLocalizedString("PlayersDetailView_ShirtNumber", comment: "before shirt number")
+    }
+    
+    private var dateOfBirthTexst: String {
+        NSLocalizedString("PlayersDetailView_BirthDay", comment: "before date of birth")
+    }
+    
+    private var nationalityText: String {
+        NSLocalizedString("PlayersDetailView_Nationality", comment: "before nationality")
+    }
+    
+    private var positionText: String {
+        NSLocalizedString("PlayersDetailView_Position", comment: "before position")
     }
     
     func fetchPlayers(playerId: Int) async throws {

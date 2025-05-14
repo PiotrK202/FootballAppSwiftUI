@@ -18,3 +18,8 @@
 "TeamsView_ViewTitle" = "Teams";
 "PlayersViewModel_ViewTitle" = "Players";
 "PlayersDetailView_Title" = "Details";
+"PlayersDetailView_BirthDay" = "Date of Birth";
+"PlayersDetailView_Nationality" = "Nationality";
+"PlayersDetailView_Position" = "Position";
+"PlayersDetailView_ShirtNumber" = "Shirt Number";
+"PlayerDetailView_ErrorTitle" = "Downloading Details went wrong";

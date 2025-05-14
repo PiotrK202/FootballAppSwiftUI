@@ -28,13 +28,14 @@ struct PlayersDetailView: View {
                     .fontWeight(.bold)
                 
                 VStack(alignment: .leading, spacing: 12) {
-                    Text("Date of Birth: \(viewModel.dateOfBirth)")
                     
-                    Text("Nationality: \(viewModel.nationality)")
+                    Text("\(viewModel.dateOfBirth)")
                     
-                    Text("Position: \(viewModel.position)")
+                    Text("\(viewModel.nationality)")
                     
-                    Text("Shirt Number: \(viewModel.shirtNumber)")
+                    Text("\(viewModel.position)")
+                    
+                    Text("\(viewModel.shirtNumber)")
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
@@ -50,7 +51,7 @@ struct PlayersDetailView: View {
                 fetchPlayer()
             }
             .alert(isPresented: $showAlert) {
-                Alert(title: Text("Error"), message: Text("Failed to fetch player details."), dismissButton: .default(Text("OK")))
+                Alert(title: Text(viewModel.errorTitle), dismissButton: .cancel())
             }
         }
     }

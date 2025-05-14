@@ -20,7 +20,6 @@ struct LeaguesListView: View {
                         ForEach(viewModel.groupedLeagues[letter] ?? []) { model in
                             NavigationLink(destination: TeamsView(viewModel: TeamsViewModel(repository: Repository(dataService: DataService(session: URLSessionHelper.session))), leaguesCode: model.code)) {
                                 HStack(spacing: 16) {
-                                    
                                     AsyncImage(url: model.emblem) { phase in
                                         switch phase {
                                         case .empty:
@@ -78,6 +77,5 @@ extension LeaguesListView {
 }
 
 #Preview {
-    let session = URLSession(configuration: .default)
-    LeaguesListView(viewModel: LeaguesViewModel(repository: Repository(dataService: DataService(session: session))))
+    LeaguesListView(viewModel: LeaguesViewModel(repository: Repository(dataService: DataService(session: URLSessionHelper.session))))
 }

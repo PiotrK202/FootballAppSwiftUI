@@ -18,3 +18,8 @@
 "TeamsView_ViewTitle" = "Druzyny";
 "PlayersViewModel_ViewTitle" = "Gracze";
 "PlayersDetailView_Title" = "Detale";
+"PlayersDetailView_BirthDay" = "Narodziny";
+"PlayersDetailView_Nationality" = "Narodowosc";
+"PlayersDetailView_Position" = "Pozycja";
+"PlayersDetailView_ShirtNumber" = "NR na koszulce";
+"PlayerDetailView_ErrorTitle" = "pobieranie detali nie powiodlo sie";
