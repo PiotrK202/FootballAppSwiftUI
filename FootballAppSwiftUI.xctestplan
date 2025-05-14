@@ -1,0 +1,28 @@
+{
+  "configurations" : [
+    {
+      "id" : "C6AACE79-A395-4918-AA06-5DF8C96AE5AB",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:FootballAppSwiftUI.xcodeproj",
+      "identifier" : "DFDE80AD2DD1D2ED00610D7D",
+      "name" : "FootballAppSwiftUI"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:FootballAppSwiftUI.xcodeproj",
+        "identifier" : "DF6D18C62DD49E1500F5736A",
+        "name" : "AppFlowTest"
+      }
+    }
+  ],
+  "version" : 1
+}

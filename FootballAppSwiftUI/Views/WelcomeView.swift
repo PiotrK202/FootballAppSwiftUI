@@ -34,6 +34,7 @@ struct WelcomeView: View {
                     firstLaunch = true
                 } label: {
                     Text(buttonLabel)
+                        .accessibilityIdentifier("welcomeView_button")
                         .font(.title)
                         .fontWeight(.heavy)
                         .frame(maxWidth: .infinity)

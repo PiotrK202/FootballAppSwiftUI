@@ -12,6 +12,12 @@ struct FootballAppSwiftUIApp: App {
 
     @AppStorage(AppStorageKeysHelper.firstLaunch) private var firstLaunch = false
     
+    init() {
+        if CommandLine.arguments.contains("--uitest") {
+            UserDefaults.standard.set(false, forKey: AppStorageKeysHelper.firstLaunch)
+        }
+    }
+    
     var body: some Scene {
         WindowGroup {
             if firstLaunch {
