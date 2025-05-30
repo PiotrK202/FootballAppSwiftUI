@@ -11,7 +11,19 @@ struct TeamsView: View {
     
     @State var viewModel: TeamsViewModel
     @State private var showAlert = false
+    @State private var searchText = ""
     let leaguesCode: String
+    
+    private var filtredTeams: [TeamModel] {
+        if searchText.isEmpty {
+            return viewModel.models
+        } else {
+            return viewModel.models.filter {
+                $0.name.localizedStandardContains(searchText) ||
+                ($0.shortName?.localizedCaseInsensitiveContains(searchText) ?? false)
+            }
+        }
+    }
     
     private let columns = [ GridItem(.flexible()), GridItem(.flexible())]
     private let unknown = NSLocalizedString("Unknown", comment: "unknown")
@@ -19,7 +31,7 @@ struct TeamsView: View {
         NavigationStack {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 8) {
-                    ForEach(viewModel.filtredTeams) { team in
+                    ForEach(filtredTeams) { team in
                         NavigationLink {
                             PlayersView(teamID: team.id, viewModel: PlayersViewModel(repository: Repository(dataService: DataService(session: URLSessionHelper.session))))
                         } label: {
@@ -74,7 +86,7 @@ struct TeamsView: View {
                     .padding()
                 }
             }
-            .searchable(text: $viewModel.searchText)
+            .searchable(text: $searchText)
             .navigationTitle(viewModel.viewTitle)
             .navigationBarTitleDisplayMode(.inline)
             .onAppear(perform: {

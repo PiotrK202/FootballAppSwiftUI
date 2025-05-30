@@ -11,17 +11,7 @@ import Foundation
 final class TeamsViewModel {
     
     private let repository: RepositoryProtocol
-    private var models = [TeamModel]()
-    var searchText = ""
-    
-    var filtredTeams: [TeamModel] {
-        guard !searchText.isEmpty else {
-            return models
-        }
-        return models.filter {
-            $0.name.lowercased().contains(searchText.lowercased()) || ($0.shortName ?? "").localizedStandardContains(searchText)
-        }
-    }
+    private(set) var models = [TeamModel]()
     
     var viewTitle: String {
         NSLocalizedString("TeamsView_ViewTitle", comment: "title")
